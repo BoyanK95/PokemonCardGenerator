@@ -1,6 +1,8 @@
 import { html, nothing, render } from "../node_modules/lit-html/lit-html.js";
+import { typeColor } from "./typeColor.js";
 
 const rootCard = document.getElementById("card");
+
 
 export function generateCard(data) {
   const hp = data.stats[0].base_stat;
@@ -12,8 +14,6 @@ export function generateCard(data) {
   
   const typeOne = data.types[0].type.name
   const typeTwo = data.types[1]?.type.name 
-  
-  
 
   const pokemon = {
     hp,
@@ -27,6 +27,10 @@ export function generateCard(data) {
   }
 
   render(pokeCardTemplate(pokemon), rootCard)
+  
+//   Styling Card Based on Type
+    const themeColor = typeColor[typeOne]
+    styleCard(themeColor)
 }
 
 const pokeCardTemplate = (pokemon) => html` 
@@ -54,3 +58,7 @@ const pokeCardTemplate = (pokemon) => html`
       <p>Speed</p>
     </div>
   </div>`;
+
+let styleCard = (color) => {
+    rootCard.style.background = `radial-gradient(circle at 50% 0%, ${color} 36%, #ffffff 36%)`
+}
