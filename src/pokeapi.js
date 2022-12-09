@@ -1,3 +1,6 @@
+import { generateCard } from "./generateCard.js"
+
+
 const url = 'https://pokeapi.co/api/v2/pokemon/'
 
 
@@ -11,6 +14,7 @@ export function getPokeData() {
     fetch(finalUrl)
     .then(responce => responce.json())
     .then(data => {
-        console.log(data);
+        generateCard(data)
     })
 }
+
